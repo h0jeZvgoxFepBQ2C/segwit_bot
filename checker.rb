@@ -50,7 +50,7 @@ EM.run {
           if diff == 0
             puts bot.channels.first.safe_send(":boom: :boom: :rocket: :tada: :tada: :tada: *LAST BLOCK MINED - SEGWIT IS NOW ACTIVE* :tada: :tada: :tada: *HAPPY BIRTHDAY SEGWIT!!!!* :tada: :tada: :tada:", true)
           else
-            puts bot.channels.first.safe_send(":tada: Block #{blockheight} found! Only #{diff} blocks to go! (activation on block #{activation})", true)
+            puts bot.channels.first.safe_send(":tada: Block #{blockheight} found! Only #{diff} blocks to go! (activation on block #{activation+1})", true)
           end
         rescue => e
           puts bot.channels.first.safe_send("Exception: #{e} #{data}", true)

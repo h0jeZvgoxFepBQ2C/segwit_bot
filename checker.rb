@@ -8,17 +8,13 @@ require 'json'
 
 require 'cinch'
 
-CHANNEL = "#blocktest"
+CHANNEL = "#uasf"
 
 bot = Cinch::Bot.new do
   configure do |c|
     c.server = "irc.freenode.org"
     c.channels = [CHANNEL]
     c.nick = "segwit_block_bot"
-  end
-
-  on :message, /.*/ do |m|
-    debug m.message
   end
 
   on :message, "hello blockbot" do |m|
@@ -54,7 +50,7 @@ EM.run {
           if diff == 0
             puts bot.channels.first.safe_send(":boom: :boom: :rocket: :tada: :tada: :tada: *LAST BLOCK MINED - SEGWIT IS NOW ACTIVE* :tada: :tada: :tada: *HAPPY BIRTHDAY SEGWIT!!!!* :tada: :tada: :tada:", true)
           else
-            puts bot.channels.first.safe_send(":tada: Block #{blockheight} found! Only #{diff} to go! (Activation on block #{activation})", true)
+            puts bot.channels.first.safe_send(":tada: Block #{blockheight} found! Only #{diff} blocks to go! (activation on block #{activation})", true)
           end
         rescue => e
           puts bot.channels.first.safe_send("Exception: #{e} #{data}", true)

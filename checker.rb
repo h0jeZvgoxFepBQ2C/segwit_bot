@@ -46,12 +46,13 @@ EM.run {
       data = JSON.parse(event.data) rescue []
       if !data.nil? && !data["x"].nil? && !data["x"]["blockIndex"].nil?
         blockheight = data["x"]["blockIndex"].to_i
-        diff = 481823 - blockheight
+        activation = 481823
+        diff = activation - blockheight
         exit 0 if diff < 0
         if diff == 0
           puts bot.channels.first.safe_send("!!!! LAST BLOCK MINED - HAPPY BIRTHDAY SEGWIT!!!!", true)
         else
-          puts bot.channels.first.safe_send("Block #{blockheight} found! Only #{diff} to go!", true)
+          puts bot.channels.first.safe_send("Block #{blockheight} found! Only #{diff} to go! (Activation on block #{activation})", true)
         end
       else
         puts  bot.channels.first.safe_send("Found: #{data}", true)

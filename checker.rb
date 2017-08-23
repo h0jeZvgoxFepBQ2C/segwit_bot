@@ -8,7 +8,7 @@ require 'json'
 
 require 'cinch'
 
-CHANNEL = "#uasf"
+CHANNEL = "##uasf"
 
 bot = Cinch::Bot.new do
   configure do |c|

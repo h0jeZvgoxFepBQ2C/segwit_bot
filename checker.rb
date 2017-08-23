@@ -45,10 +45,12 @@ EM.run {
         activation = 481823
         diff = activation - blockheight
         puts "DIFF #{diff}"
-        exit 0 if diff < 0
+        exit 0 if diff < (-1)
         begin
           if diff == 0
-            puts bot.channels.first.safe_send(":boom: :boom: :rocket: :tada: :tada: :tada: *LAST BLOCK MINED - SEGWIT IS NOW ACTIVE* :tada: :tada: :tada: *HAPPY BIRTHDAY SEGWIT!!!!* :tada: :tada: :tada:", true)
+            puts bot.channels.first.safe_send(":boom: :boom: :rocket: :tada: :tada: :tada: *LAST PRE-SEGWIT BLOCK MINED - SEGWIT WILL BECOME ACTIVE WITH THE NEXT BLOCK!!!* :tada: :tada: :tada:", true)
+          elsif diff == 1
+            puts bot.channels.first.safe_send(":boom: :boom: :rocket: :tada: :tada: :tada: *SEGWIT IS NOW ACTIVE!!!* :tada: :tada: :tada: *HAPPY BIRTHDAY SEGWIT!!!!* :tada: :tada: :tada:", true)
           else
             puts bot.channels.first.safe_send(":tada: Block #{blockheight} found! Only #{diff} blocks to go! (activation on block #{activation+1})", true)
           end

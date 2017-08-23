@@ -48,12 +48,13 @@ EM.run {
         blockheight = data["x"]["blockIndex"].to_i
         activation = 481823
         diff = activation - blockheight
+        puts "DIFF #{diff}"
         exit 0 if diff < 0
         begin
           if diff == 0
-            puts bot.channels.first.safe_send("!!!! LAST BLOCK MINED - HAPPY BIRTHDAY SEGWIT!!!!", true)
+            puts bot.channels.first.safe_send(":boom: :boom: :rocket: :tada: :tada: :tada: *LAST BLOCK MINED - SEGWIT IS NOW ACTIVE* :tada: :tada: :tada: *HAPPY BIRTHDAY SEGWIT!!!!* :tada: :tada: :tada:", true)
           else
-            puts bot.channels.first.safe_send("Block #{blockheight} found! Only #{diff} to go! (Activation on block #{activation})", true)
+            puts bot.channels.first.safe_send(":tada: Block #{blockheight} found! Only #{diff} to go! (Activation on block #{activation})", true)
           end
         rescue => e
           puts bot.channels.first.safe_send("Exception: #{e} #{data}", true)

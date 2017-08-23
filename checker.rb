@@ -44,8 +44,8 @@ EM.run {
       p [:message, JSON.parse(event.data)]
 
       data = JSON.parse(event.data) rescue []
-      if !data.nil? && !data["x"].nil? && !data["x"]["blockIndex"].nil?
-        blockheight = data["x"]["blockIndex"].to_i
+      if !data.nil? && !data["x"].nil? && !data["x"]["height"].nil?
+        blockheight = data["x"]["height"].to_i
         activation = 481823
         diff = activation - blockheight
         puts "DIFF #{diff}"

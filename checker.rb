@@ -35,7 +35,7 @@ EM.run {
 
   ws.on :open do |event|
     p [:open]
-   # ws.send('{"op":"unconfirmed_sub"}')
+    # ws.send('{"op":"unconfirmed_sub"}')
     ws.send('{"op":"blocks_sub"}')
   end
 
@@ -49,10 +49,14 @@ EM.run {
         activation = 481823
         diff = activation - blockheight
         exit 0 if diff < 0
-        if diff == 0
-          puts bot.channels.first.safe_send("!!!! LAST BLOCK MINED - HAPPY BIRTHDAY SEGWIT!!!!", true)
-        else
-          puts bot.channels.first.safe_send("Block #{blockheight} found! Only #{diff} to go! (Activation on block #{activation})", true)
+        begin
+          if diff == 0
+            puts bot.channels.first.safe_send("!!!! LAST BLOCK MINED - HAPPY BIRTHDAY SEGWIT!!!!", true)
+          else
+            puts bot.channels.first.safe_send("Block #{blockheight} found! Only #{diff} to go! (Activation on block #{activation})", true)
+          end
+        rescue => e
+          puts bot.channels.first.safe_send("Exception: #{e} #{data}", true)
         end
       else
         puts  bot.channels.first.safe_send("Found: #{data}", true)
